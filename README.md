@@ -1,66 +1,298 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ASTUDIO Task
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Installation & Setup
+### **1. Clone the repository**
+```sh
+git clone https://github.com/your-repo/project-management-api.git
+cd project-management-api
+```
 
-## About Laravel
+### **2. Install dependencies**
+```sh
+composer install
+```
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### **3. Configure the environment**
+```sh
+cp .env.example .env
+```
+- Set up your database connection in `.env` file.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### **4. Run database migrations & seeders**
+```sh
+php artisan migrate --seed
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### **5. Generate application key**
+```sh
+php artisan key:generate
+```
 
-## Learning Laravel
+### **6. Generate Passport Client**
+```sh
+php artisan passport:client --personal
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### **7. Start the server**
+```sh
+php artisan serve
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## API Documentation
 
-## Laravel Sponsors
+### **Full Api Documentation**
+ link:https://documenter.getpostman.com/view/31408225/2sAYdmjSxn
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### **Some Requests & Responses Examples**
 
-### Premium Partners
+### **Authentication**
+#### **Register**
+**Request:**
+```http
+POST /api/register
+```
+```json
+{
+  "first_name": "Mahmoud",
+  "last_name": "Krima",
+  "email": "mahmoudkrima2000@gmail.com",
+  "password": "password"
+  "password_confirmation": "password"
+}
+```
+**Response:**
+```json
+{
+    "data": {
+        "user": {
+            "id": 10,
+            "first_name": "Mahmoud",
+            "last_name": "Krima",
+            "full_name": "Mahmoud Krima",
+            "email": "mahmoudkrima2000@gmail.com"
+        },
+        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5ZTU4ZTZhMS1mZTFkLTRhMzAtYWQ5OC1hMGNiYzg0ZDQ4YmUiLCJqdGkiOiI5MjIxNDc4NDI2NmI2MTFjZjk1ZmQ2OWYyM2FjNGM4YjgxZGQ4OWVlYmM0ZGEwNmE4OTc0MDk2NTQ0ODU5YjNjNDQ3NzVmZGQ0OTZlMThjZCIsImlhdCI6MTc0MTA0NzQwNS45Njk5NTMsIm5iZiI6MTc0MTA0NzQwNS45Njk5NTYsImV4cCI6MTc3MjU4MzQwNS45NjEwNDgsInN1YiI6IjEwIiwic2NvcGVzIjpbXX0.YwCqSnG0C3pKYQ4tb8mAgDtjXJG7wtM_mrkTlD3qjMcAR_rRdYbeh3cNetFRrEF8JROWOBIFcfRIqKfmf707nx2_6dSFlDe_LbhamuYVUJ4Uq8dnMU2aw1lKUi8413w8NeObe8LprPgvxUNA3My0pL4I3bkOU6OhYoa5WTxkm5HbLtAfK-uZtx-ooZX4EKG0W04lc-qm8aTI5nGsQ4sTTRxsGVVDn1Uil_fE4LUxAEndJtCrfwZiJb5ZMpQ1Dc8P8iYpbyyhRJVUlwzupspUMweQphcTPRpczF5k6JDgLWbWqjqHzCuhJFxqq2xG7obrw7ypwCRLUp6rVKCy3my9WlNR64GLP52NIuNArBa5BlJlJeu5X25uNqywennExrpUdljnPrdGNRmAs8eH-YbGgm6hRFIxG8a91Wm1QDarLeLPfheFsvG2Prtitu46AQwRAG9zL5NlWAUWPhyyRWiDJLz9hTpOzgBA9PDiuzB6z3h-2z971AXai2JhwUKRcDUKqgQlfO1mgn9u99kN8f6Apqrgck3iMU2GulkCE7MKC8EcAsTew2z9VvOcRv8_S7klYg-5em7OMULxS-KBOUGifLds20D9tKExcf0TLDr0Im5Em2bYd_wcR_GdjA5f5k-JDCB1tgtuHDTE_3PvVm5P7FtNf6uBKafF7P0YlNpBJWg"
+    },
+    "message": "User registered successfully",
+    "error": [],
+    "status": 200
+}
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+#### **Login**
+**Request:**
+```http
+POST /api/login
+```
+```json
+{
+  "email": "mahmoudkrima2000@gmail.com",
+  "password": "password"
+}
+```
+**Response:**
+```json
+{
+    "data": {
+         "user": {
+            "id": 10,
+            "first_name": "Mahmoud",
+            "last_name": "Krima",
+            "full_name": "Mahmoud Krima",
+            "email": "mahmoudkrima2000@gmail.com"
+        },
+        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5ZTU4ZTZhMS1mZTFkLTRhMzAtYWQ5OC1hMGNiYzg0ZDQ4YmUiLCJqdGkiOiI1YjZhYTkwNGQzMzNlZTNlMTY3NjY2ZWI1MjAyYjNlMWZhMDYyYzE1MjQwZDk0ZDQyODBhMzA1OGMwYWE4MjBkMjFjMjY3NDIxYWIyNWJmNSIsImlhdCI6MTc0MTA0NzMzOC4xMTEwMTMsIm5iZiI6MTc0MTA0NzMzOC4xMTEwMTUsImV4cCI6MTc3MjU4MzMzOC4wOTY0NDYsInN1YiI6IjkiLCJzY29wZXMiOltdfQ.JR1JOcfFFbjc3zCgHrPFUAiEIvxORMV5pDmM3UVFhkpNic9WlcTW6qIvld7KKS3Eyzqib2XK_UOkIpTNWwih6NjhsAnlC1ocjAygewD3R4ErIJvviTFa8xfJS3DyjK4AvOvhbpXOYPQwxNk7MLJQVXnkdLXy7h-yASHP9wX1Vxf7RDQkzqzYbTaGlYqHGWmZchagxVH5oGtH6fte4nFdeu1X-u3iMtHvegVnrvIs8FZaQo61wHqZ0zNpeUlVadN-XvCcISmUMsaWgAfddODaLAnvBX_Uc4diMRZbCLBkDq7zRXUS_fvp984Izv3IywKA7UynSvxBP4dFREGPeVjjnoCvp1LhrXdaMmuVM-A7un09savGuNw4BkXXMJBVlw3ymLXjcm-xOawsPnDi8CS1F8vUxJVLPYqOdhKRt-FzSz2vJ0OVKzPHsJvqWkJQhZa4I-2mQapIjXtHUAzAim97leSfXFEeZbwNA1Po3yJG7aoQ4f_hkKTXVx2bW5nlcAz-xI0S2rIb6o-0vsBG_MtMf-xxVtjhSRKRbx8-5f0ZyfRf8A8L9ytGrkHZwhZtl87nhQN9we0LLwhkeKAasgzkB5Uc06gVY05sFURNsWj20v_Xk1c--h0QYkCihn_I63Y6FeGTg5_BihACCw1RIAW-I1pUqdt2lVefUNb-VZkhcUc"
+    },
+    "message": "User Login successfully",
+    "error": [],
+    "status": 200
+}
+```
 
-## Contributing
+#### **Login**
+**Request:**
+```http
+POST /api/logout
+```
+```
+  Authorization: Bearer your_token_here
+  Content-Type: application/json
+```
+**Response:**
+```json
+{
+    "data": [],
+    "message": "Successfully logged out",
+    "error": [],
+    "status": 200
+}
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### **Projects**
 
-## Code of Conduct
+#### **Filtering Projects**
+**Request with Operators:**
+```http
+GET /api/projects?filters[start_date>=]=2025-03-06
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**Response:**
+```json
+{
+    "data": {
+        "projects": [
+            {
+                "id": 1,
+                "name": "Project One",
+                "status": "active",
+                "creator_id": 1,
+                "creator_name": "Mahmoud Krima",
+                "users": [
+                    {
+                        "id": 1,
+                        "first_name": "Mahmoud",
+                        "last_name": "Krima",
+                        "full_name": "Mahmoud Krima",
+                        "email": "modykrima2000@gmail.com"
+                    }
+                ],
+                "attributes": [
+                    {
+                        "id": 1,
+                        "attribute": {
+                            "id": 1,
+                            "name": "Department",
+                            "type": "select",
+                            "options": [
+                                "IT",
+                                "HR",
+                                "Marketing"
+                            ]
+                        },
+                        "value": "IT"
+                    },
+                    {
+                        "id": 3,
+                        "attribute": {
+                            "id": 2,
+                            "name": "Start Date",
+                            "type": "date",
+                            "options": null
+                        },
+                        "value": "2025-03-03"
+                    },
+                    {
+                        "id": 4,
+                        "attribute": {
+                            "id": 3,
+                            "name": "End Date",
+                            "type": "date",
+                            "options": null
+                        },
+                        "value": "2025-03-15"
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "name": "Project Two",
+                "status": "pending",
+                "creator_id": 2,
+                "creator_name": "Krima Mahmoud",
+                "users": [],
+                "attributes": [
+                    {
+                        "id": 2,
+                        "attribute": {
+                            "id": 1,
+                            "name": "Department",
+                            "type": "select",
+                            "options": [
+                                "IT",
+                                "HR",
+                                "Marketing"
+                            ]
+                        },
+                        "value": "Marketing"
+                    }
+                ]
+            }
+        ],
+        "meta": {
+            "total": 2,
+            "per_page": 15,
+            "current_page": 1,
+            "last_page": 1
+        },
+        "links": {
+            "first": "http://127.0.0.1:8000/api/projects?page=1",
+            "last": "http://127.0.0.1:8000/api/projects?page=1",
+            "prev": null,
+            "next": null
+        },
+        "pages": [
+            "http://127.0.0.1:8000/api/projects?page=1"
+        ]
+    },
+    "message": "",
+    "error": [],
+    "status": 200
+}
+```
 
-## Security Vulnerabilities
+**Request with Operators:**
+```http
+GET /api/projects/2
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**Response:**
+```json
+{
+    "data": {
+        "project": {
+            "id": 2,
+            "name": "Project Two",
+            "status": "pending",
+            "creator_id": 2,
+            "creator_name": "Krima Mahmoud",
+            "users": [],
+            "attributes": [
+                {
+                    "id": 2,
+                    "attribute": {
+                        "id": 1,
+                        "name": "Department",
+                        "type": "select",
+                        "options": [
+                            "IT",
+                            "HR",
+                            "Marketing"
+                        ]
+                    },
+                    "value": "Marketing"
+                }
+            ]
+        }
+    },
+    "message": "",
+    "error": [],
+    "status": 200
+}
+```
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Test Credentials
+Use these credentials to test the API:
+```json
+{
+  "email": "modykrima2000@gmail.com",
+  "password": "123456789"
+}
+```
+
+---
+
+
+
