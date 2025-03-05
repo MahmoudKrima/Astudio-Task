@@ -3,8 +3,8 @@
 ## Installation & Setup
 ### **1. Clone the repository**
 ```sh
-git clone https://github.com/your-repo/project-management-api.git
-cd project-management-api
+git clone https://github.com/MahmoudKrima/Astudio-Task.git
+cd astudio-task
 ```
 
 ### **2. Install dependencies**
